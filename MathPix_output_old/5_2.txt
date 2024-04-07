@@ -1,0 +1,20 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <msubsup>
+    <mo data-mjx-texclass="OP">∫</mo>
+    <mn>1</mn>
+    <mrow>
+      <msup>
+        <mi>e</mi>
+        <mn>2</mn>
+      </msup>
+    </mrow>
+  </msubsup>
+  <mi>x</mi>
+  <mi>ln</mi>
+  <mo data-mjx-texclass="NONE">⁡</mo>
+  <msqrt>
+    <mi>x</mi>
+  </msqrt>
+  <mi>d</mi>
+  <mi>x</mi>
+</math>
