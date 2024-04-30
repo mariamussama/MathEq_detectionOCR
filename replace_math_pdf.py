@@ -66,7 +66,6 @@ def get_pdf_page_size(pdf_path, page_number=0):
 # Function to replace processed images with content from text files
 def replace_inPDF(input_coordinates_dir, input_pdf_path, input_math_dir, output_path):
     pdf_width, pdf_height = get_pdf_page_size(input_pdf_path)
-    dpi= 75
     with open(input_pdf_path, 'rb') as pdf_file:
         pdf_reader = PyPDF2.PdfReader(pdf_file)
         pdf_writer = PyPDF2.PdfWriter()
@@ -79,24 +78,29 @@ def replace_inPDF(input_coordinates_dir, input_pdf_path, input_math_dir, output_
                 n = 0
                 packet = BytesIO()
                 can = canvas.Canvas(packet, pagesize=letter)
-                can.setFillColor(colors.black)
                 # Replace processed images with content from text files
                 for idx, (x, y, w, h) in enumerate(coordinates, start=1):
+                    y_content = y + (h/2)
                     math_filename = os.path.splitext(os.path.basename(txt_file))[0].split('_')[1] + f'_{idx}.txt'
                     math_filepath = os.path.join(input_math_dir, math_filename)
                     content = load_content(math_filepath)
                     
                     # Draw the text onto the canvas
-                    
-                    # pdf_x, pdf_y = image_to_pdf_coordinates(x, y, (4961,7016), pdf_width, pdf_height)
-                    # print(pdf_x, pdf_y)
-                    scaling_factor_x = int(pdf_width) / (4961 * (dpi / 72.0))
-                    scaling_factor_y = int(pdf_height) / (7016 * (dpi / 72.0))
+
+                    scaling_factor_x = int(pdf_width) / 4961
+                    scaling_factor_y = int(pdf_height) / 7016
                     pdf_x = x * scaling_factor_x
-                    pdf_y = y * scaling_factor_y
+                    pdf_y = int(pdf_height) -( y * scaling_factor_y)
+                    pdf_y_content = int(pdf_height) -(y_content * scaling_factor_y)
+                    pdf_h= h * scaling_factor_y
+                    pdf_w = w * scaling_factor_x
                     print(pdf_x, pdf_y)
                     # can.drawString(10, 10 + (n*15), content)
-                    can.drawString(pdf_x, pdf_y+200, content)
+                    can.setFillColor(colors.white) 
+                    can.setStrokeColor(colors.white)
+                    can.rect(pdf_x, pdf_y, pdf_w, -pdf_h, fill=1)
+                    can.setFillColor(colors.black)
+                    can.drawString(pdf_x, pdf_y_content, content)
                     n = n +1
                     
                 # Close the canvas
