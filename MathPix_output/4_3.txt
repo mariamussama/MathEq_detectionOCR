@@ -1,1 +1,0 @@
-intx^(2)cos xdx

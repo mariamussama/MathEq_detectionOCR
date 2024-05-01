@@ -1,1 +1,0 @@
-int_(0)^((pi)/(4))(sin^(3)x)/(sqrt(cos x))dx
