@@ -1,0 +1,29 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <msubsup>
+    <mo data-mjx-texclass="OP">∫</mo>
+    <mn>0</mn>
+    <mrow>
+      <mfrac>
+        <mi>π</mi>
+        <mn>4</mn>
+      </mfrac>
+    </mrow>
+  </msubsup>
+  <mfrac>
+    <mrow>
+      <msup>
+        <mi>sin</mi>
+        <mn>3</mn>
+      </msup>
+      <mo data-mjx-texclass="NONE">⁡</mo>
+      <mi>x</mi>
+    </mrow>
+    <msqrt>
+      <mi>cos</mi>
+      <mo data-mjx-texclass="NONE">⁡</mo>
+      <mi>x</mi>
+    </msqrt>
+  </mfrac>
+  <mi>d</mi>
+  <mi>x</mi>
+</math>
